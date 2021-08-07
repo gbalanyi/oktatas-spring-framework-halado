@@ -1,21 +1,24 @@
 package io.github.gbalanyi.spring.framework.service;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class MySpringService {
 
-    private final List<BaseTimestampService> baseTimestampServices;
+    private final Map<String, BaseTimestampService> baseTimestampServices;
 
-    public MySpringService(List<BaseTimestampService> baseTimestampServices) {
+    public MySpringService(Map<String, BaseTimestampService> baseTimestampServices) {
         this.baseTimestampServices = baseTimestampServices;
     }
 
     public void greeting(String name) {
-        for (BaseTimestampService baseTimestampService : baseTimestampServices) {
-            System.out.println(String.format("%s Hello %s!", baseTimestampService.getCurrentTimestamp(), name));
+        for (Map.Entry<String, BaseTimestampService> baseTimestampServiceEntry : baseTimestampServices.entrySet()) {
+            System.out.println(String.format("Bean name: %s, %s Hello %s!",
+                    baseTimestampServiceEntry.getKey(),
+                    baseTimestampServiceEntry.getValue().getCurrentTimestamp(),
+                    name));
         }
     }
 }
