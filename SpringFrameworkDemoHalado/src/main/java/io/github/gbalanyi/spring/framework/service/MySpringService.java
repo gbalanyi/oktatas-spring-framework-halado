@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class MySpringService {
 
-    private final TimestampService timestampService;
+    private final BaseTimestampService baseTimestampService;
 
-    public MySpringService(TimestampService timestampService) {
-        this.timestampService = timestampService;
+    public MySpringService(BaseTimestampService baseTimestampService) {
+        this.baseTimestampService = baseTimestampService;
     }
 
     public void greeting(String name) {
-        System.out.println(String.format("%s Hello %s!", timestampService.getCurrentTimestamp(), name));
+        System.out.println(String.format("%s Hello %s!", baseTimestampService.getCurrentTimestamp(), name));
     }
 }

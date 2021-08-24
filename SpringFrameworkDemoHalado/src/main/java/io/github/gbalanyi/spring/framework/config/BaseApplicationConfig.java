@@ -6,6 +6,5 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan(basePackages = "io.github.gbalanyi.spring.framework")
-@PropertySource("classpath:application.properties")
 public class BaseApplicationConfig {
 }
