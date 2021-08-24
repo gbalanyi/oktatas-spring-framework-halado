@@ -14,5 +14,7 @@ public abstract class BaseTimestampService {
         return DateTimeFormatter.ISO_ZONED_DATE_TIME.format(ZonedDateTime.now(getClock()).truncatedTo(ChronoUnit.SECONDS));
     }
 
+    public abstract Integer getOrderNumber();
+
     protected abstract Clock getClock();
 }
