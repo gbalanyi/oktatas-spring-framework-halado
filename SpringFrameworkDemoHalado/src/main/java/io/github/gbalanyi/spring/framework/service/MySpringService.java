@@ -8,7 +8,7 @@ public class MySpringService {
 
     private final BaseTimestampService baseTimestampService;
 
-    public MySpringService(@Qualifier("localTimestampService") BaseTimestampService baseTimestampService) {
+    public MySpringService(@Qualifier(UtcTimestampService.QUALIFIER) BaseTimestampService baseTimestampService) {
         this.baseTimestampService = baseTimestampService;
     }
 
