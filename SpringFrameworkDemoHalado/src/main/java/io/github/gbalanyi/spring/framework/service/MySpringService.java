@@ -1,18 +1,19 @@
 package io.github.gbalanyi.spring.framework.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MySpringService {
 
-    private final BaseTimestampService baseTimestampService;
+    private final TimestampService timestampService;
 
-    public MySpringService(@Qualifier(UtcTimestampService.QUALIFIER) BaseTimestampService baseTimestampService) {
-        this.baseTimestampService = baseTimestampService;
+    public MySpringService(@Lazy TimestampService timestampService) {
+        System.out.println(System.currentTimeMillis() + " Created MySpringService");
+        this.timestampService = timestampService;
     }
 
     public void greeting(String name) {
-        System.out.println(String.format("%s Hello %s!", baseTimestampService.getCurrentTimestamp(), name));
+        System.out.println(String.format("%s Hello %s!", timestampService.getCurrentTimestamp(), name));
     }
 }
