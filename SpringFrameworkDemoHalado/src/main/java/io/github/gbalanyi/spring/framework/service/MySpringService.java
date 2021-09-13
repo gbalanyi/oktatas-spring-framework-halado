@@ -1,6 +1,7 @@
 package io.github.gbalanyi.spring.framework.service;
 
-import org.springframework.context.annotation.Lazy;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,9 +9,13 @@ public class MySpringService {
 
     private final TimestampService timestampService;
 
-    public MySpringService(@Lazy TimestampService timestampService) {
-        System.out.println(System.currentTimeMillis() + " Created MySpringService");
+    public MySpringService(TimestampService timestampService) {
         this.timestampService = timestampService;
+    }
+
+    @PostConstruct
+    protected void initBean() {
+        System.out.println(String.format("Initialized '%s' bean", this.getClass().getSimpleName()));
     }
 
     public void greeting(String name) {
