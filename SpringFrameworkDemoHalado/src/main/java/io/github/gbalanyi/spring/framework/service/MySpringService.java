@@ -1,11 +1,11 @@
 package io.github.gbalanyi.spring.framework.service;
 
-import javax.annotation.PostConstruct;
-
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MySpringService {
+public class MySpringService implements ApplicationListener<ContextRefreshedEvent> {
 
     private final TimestampService timestampService;
 
@@ -13,9 +13,9 @@ public class MySpringService {
         this.timestampService = timestampService;
     }
 
-    @PostConstruct
-    protected void initBean() {
-        System.out.println(String.format("Initialized '%s' bean", this.getClass().getSimpleName()));
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        System.out.println("ApplicationContext refreshed.");
     }
 
     public void greeting(String name) {
